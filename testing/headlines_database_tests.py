@@ -14,7 +14,7 @@ class TestHeadlinesDatabase(unittest.TestCase):
     def tearDown(self):
         os.remove(self.db)
 
-    def testRoundTrip(self):
+    def test_round_trip(self):
         headlines = ['headline1', 'headline2', 'headline3']
 
         expected_result = [(self.today, 'headline1'),
