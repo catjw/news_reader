@@ -3,12 +3,11 @@ import sqlite3
 
 
 def create_headlines_table(db, table):
-    """Drops then creates sqlite3 table in database for storing BBC news headlines"""
+    """Creates sqlite3 table in database for storing BBC news headlines if one does not exist"""
     connection = sqlite3.connect(db)
     c = connection.cursor()
 
-    c.execute('DROP TABLE {t}'.format(t=table))
-    c.execute('CREATE TABLE {t} (date_added date, headline text)'.format(t=table))
+    c.execute('CREATE TABLE IF NOT EXISTS {t} (date_added date, headline text)'.format(t=table))
 
     connection.commit()
     connection.close()
@@ -47,9 +46,9 @@ values = ['headline one',
           'heres another one',
           'surprise its number 3']
 
-create_headlines_table('test', 'one')
-add_headlines_to_table(values, 'test', 'one')
-hl = get_headlines_from_table('test', 'one')
+create_headlines_table('test.db', 'one')
+add_headlines_to_table(values, 'test.db', 'one')
+hl = get_headlines_from_table('test.db', 'one')
 
 for h in hl:
     print(h)
