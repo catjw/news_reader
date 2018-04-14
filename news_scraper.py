@@ -3,15 +3,23 @@ import re
 import requests
 
 
-def get_bbc_headlines():
-    """Return list of headlines from http://www.bbc.co.uk/news"""
-    headlines = []
+def get_bbc_html():
+    """Return html from http://www.bbc.co.uk/news"""
 
     bbc_news = 'http://www.bbc.co.uk'
-    headline_class = 'gs-c-promo-heading nw-o-link-split__anchor gs-o-faux-block-link__overlay-link'
 
     r = requests.get(bbc_news + '/news')
-    soup = BeautifulSoup(r.text, 'html.parser')
+
+    return r.text
+
+
+def parse_bbc_headlines(bbc_news_html):
+    """Return list of headlines from bbc_news_html"""
+    headlines = []
+
+    soup = BeautifulSoup(bbc_news_html, 'html.parser')
+
+    headline_class = 'gs-c-promo-heading nw-o-link-split__anchor gs-o-faux-block-link__overlay-link'
 
     for l in soup.find_all('a', {'class': re.compile(headline_class + '*')}):
         if l.h3:
@@ -21,5 +29,6 @@ def get_bbc_headlines():
     return headlines
 
 
-for h in get_bbc_headlines():
+bbc_html = get_bbc_html()
+for h in parse_bbc_headlines(bbc_html):
     print(h)
