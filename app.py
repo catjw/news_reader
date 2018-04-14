@@ -4,8 +4,8 @@ from headlines_database import get_headlines_from_table
 
 app = Flask(__name__)
 
-db = 'test.db'
-table = 'one'
+db = 'bbc.db'
+table = 'headlines'
 
 
 @app.route('/')
