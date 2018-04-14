@@ -42,6 +42,17 @@ def get_headlines_from_table(db, table):
     return headline_list
 
 
+def drop_headlines_table(db, table):
+    """Drops sqlite3 table in database for storing BBC news headlines if one does not exist"""
+    connection = sqlite3.connect(db)
+    c = connection.cursor()
+
+    c.execute('DROP TABLE IF EXISTS {t}'.format(t=table))
+
+    connection.commit()
+    connection.close()
+
+
 values = ['headline one',
           'heres another one',
           'surprise its number 3']
