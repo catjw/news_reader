@@ -27,8 +27,3 @@ def parse_bbc_headlines(bbc_news_html):
                 headlines.append(l.h3.string)
 
     return headlines
-
-
-bbc_html = get_bbc_html()
-for h in parse_bbc_headlines(bbc_html):
-    print(h)

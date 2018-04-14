@@ -51,16 +51,3 @@ def drop_headlines_table(db, table):
 
     connection.commit()
     connection.close()
-
-
-values = ['headline one',
-          'heres another one',
-          'surprise its number 3']
-
-create_headlines_table('test.db', 'one')
-add_headlines_to_table(values, 'test.db', 'one')
-hl = get_headlines_from_table('test.db', 'one')
-
-for h in hl:
-    print(h)
-
