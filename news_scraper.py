@@ -19,11 +19,15 @@ def parse_bbc_headlines(bbc_news_html):
 
     soup = BeautifulSoup(bbc_news_html, 'html.parser')
 
-    headline_class = 'gs-c-promo-heading nw-o-link-split__anchor gs-o-faux-block-link__overlay-link'
+    headline_class = re.compile('gs-c-promo-heading*')
 
-    for l in soup.find_all('a', {'class': re.compile(headline_class + '*')}):
+    for l in soup.find_all('a', {'class': headline_class}):
         if l.h3:
             if (l['href'][0:1]) == '/':
                 headlines.append(l.h3.string)
+
+    for h in headlines:
+        if h == 'BBC News Channel':
+            headlines.remove(h)
 
     return headlines

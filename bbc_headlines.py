@@ -1,15 +1,16 @@
+#!/usr/bin/python3.6
 import news_scraper
 import headlines_database
+import sys
 
 
 def main():
-    db = 'bbc.db'
-    table = 'headlines'
+    db = sys.argv[1]
+    table = sys.argv[2]
 
     bbc_html = news_scraper.get_bbc_html()
     stories = news_scraper.parse_bbc_headlines(bbc_html)
 
-    headlines_database.create_headlines_table(db, table)
     headlines_database.add_headlines_to_table(stories, db, table)
 
 
