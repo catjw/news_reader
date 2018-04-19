@@ -1,4 +1,4 @@
-#!/usr/bin/python3.6
+#!/usr/local/bin/python3.6
 from headlines_database import create_headlines_table
 import os
 import sys

@@ -5,13 +5,13 @@ from headlines_database import get_headlines_from_table
 
 app = Flask(__name__)
 
-db = sys.argv[1]
-table = sys.argv[2]
+db = 'bbc.db'
+table = 'headlines'
 
 
 @app.route('/')
 def display_headlines():
-    headlines = get_headlines_from_table(db, table)
+    headlines = get_headlines_from_table('bbc.db', 'headlines')
     if headlines:
         return render_template('base_headlines.html', headlines=headlines)
     else:
