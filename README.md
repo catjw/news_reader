@@ -6,7 +6,7 @@ A program to retrieve BBC News headlines daily (at midday), store them in a data
 
 Python3 located in /usr/bin/ and pip
 
-Python library requirements are detailed in [requirements](README.md)
+Python library requirements are detailed in [requirements.txt](requirements.txt)
 
 ### Installing
 
