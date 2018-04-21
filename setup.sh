@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-dir=$(pwd)
-db=${dir}/bbc.db
+dir=$(pwd)/
+db=bbc.db
 table=headlines
 
-pip3 install -r requirements.txt
+pip3 install --user -r requirements.txt
 
-(crontab -l 2>/dev/null; echo "0 12 * * * ${dir}/headlines_cron.sh ${dir} ${db} ${table}") | crontab -
-
-./install.py ${db} ${table}
+./install.py ${dir} ${db} ${table}

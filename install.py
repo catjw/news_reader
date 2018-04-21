@@ -1,12 +1,20 @@
-#!/usr/local/bin/python3.6
+#!/usr/local/bin/python3
 from headlines_database import create_headlines_table
 import os
 import sys
+from crontab import CronTab
 
-user = os.environ['USERNAME']
-db = sys.argv[1]
-table = sys.argv[2]
+project_dir = sys.argv[1]
+db = project_dir + sys.argv[2]
+table = sys.argv[3]
+cron_command = '%sbbcheadlines.py %s %s' % (project_dir, db, table)
 
 create_headlines_table(db, table)
 
-os.system('python3.6 app.py ' + db + ' ' + table)
+user_cron = CronTab(user=True)
+job = user_cron.new(command=cron_command)
+job.minute.on(0)
+job.hour.on(12)
+user_cron.write()
+
+os.system('./app.py')
