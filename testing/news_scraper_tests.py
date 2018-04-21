@@ -5,7 +5,7 @@ from news_scraper import parse_bbc_headlines
 class TestParseHeadlines(unittest.TestCase):
 
     def test_parse_html_file(self):
-        fd = open('bbc_raw_test.html')
+        fd = open('testing/bbc_raw_test.html')
         result = ["Trump hails 'perfect' Syria strikes", "'We heard rumble like thunder'",
                   'Were the Syria air strikes legal?', 'PM has chosen which way to jump on Syria',
                   "'No alternative' to Syria strikes - May", 'Moment missiles fired from ship',
@@ -37,6 +37,8 @@ class TestParseHeadlines(unittest.TestCase):
                   'Sheff Utd host play-off rivals Millwall, plus EFL build-up']
 
         self.assertEqual(parse_bbc_headlines(fd), result)
+
+        fd.close()
 
 
 if __name__ == '__main__':

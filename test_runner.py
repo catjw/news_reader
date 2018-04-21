@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import unittest
 
 import testing.headlines_database_tests as database
