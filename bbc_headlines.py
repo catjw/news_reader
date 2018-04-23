@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 import news_scraper
 import headlines_database
 import sys

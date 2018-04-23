@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 from flask import Flask, render_template
-import sys
 
 from headlines_database import get_headlines_from_table
 
@@ -12,7 +11,7 @@ table = 'headlines'
 
 @app.route('/')
 def display_headlines():
-    headlines = get_headlines_from_table('bbc.db', 'headlines')
+    headlines = get_headlines_from_table(db, table)
     if headlines:
         return render_template('base_headlines.html', headlines=headlines)
     else:
