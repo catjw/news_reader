@@ -1,0 +1,4 @@
+beautifulsoup4==4.6.0
+requests==2.18.4
+flask==0.12.2
+python-crontab==2.2.8

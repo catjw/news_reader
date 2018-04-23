@@ -1,1 +1,5 @@
 .idea/*
+notes
+__pycache__/*
+testing/.pytest_cache/*
+*.db
