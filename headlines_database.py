@@ -44,10 +44,32 @@ def get_all_headlines_from_table(db, table):
 
 def get_dates_from_table(db, table):
     """Return list of distinct date tuples from table"""
+    connection = sqlite3.connect(db)
+    c = connection.cursor()
+
+    c.execute('SELECT DISTINCT date_added FROM {t} ORDER BY date(date_added) DESC'.format(t=table))
+
+    date_list = c.fetchall()
+
+    connection.commit()
+    connection.close()
+
+    return date_list
 
 
 def get_headlines_on_date(db, table, date):
     """Returns list of headline tuples for a specific date tuple"""
+    connection = sqlite3.connect(db)
+    c = connection.cursor()
+
+    c.execute('SELECT DISTINCT headline FROM {t} WHERE date_added = ?'.format(t=table), date)
+
+    headlines_on_date_list = c.fetchall()
+
+    connection.commit()
+    connection.close()
+
+    return headlines_on_date_list
 
 
 def drop_headlines_table(db, table):
