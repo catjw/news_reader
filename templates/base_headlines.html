@@ -1,5 +1,48 @@
 <!doctype html>
-<h1>BBC News Headlines</h1>
-{% for headline in headlines %}
-<h4>{{headline[1]}} </h4>
-{% endfor %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+    <title>BBC Headlines</title>
+</head>
+
+<body>
+<nav class="navbar navbar-light bg-info sticky-top">
+    <span class="navbar-brand mb-0 h1 text-light font-weight-bold">BBC News Headlines</span>
+    <div class="btn-group btn-toggle">
+        {% for date in dates %}
+            <button class="btn btn-outline-light" type="button" data-toggle="collapse" data-target="#{{ date[0] }}"
+                    aria-expanded="false">{{ date[0] }}
+            </button>
+        {% endfor %}
+    </div>
+</nav>
+<div class="accordion" id="accordion">
+    {% for date in dates %}
+        <div class="card">
+            <div id="{{ date[0] }}" class="collapse" data-parent="accordion">
+                <div class="card-body">
+                    <h5 class="card-title">{{ date[0] }}</h5>
+                    <ul class="list-group bg-light">
+                        {% for h in headlines %}
+                            <li class="list-group-item list-group-item-action list-group-item-light text-secondary">{{ h[0] }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>

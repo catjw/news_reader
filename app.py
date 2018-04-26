@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from flask import Flask, render_template
 
-from headlines_database import get_all_headlines_from_table
+import headlines_database
 
 app = Flask(__name__)
 
@@ -11,9 +11,14 @@ table = 'headlines'
 
 @app.route('/')
 def display_headlines():
-    headlines = get_all_headlines_from_table(db, table)
-    if headlines:
-        return render_template('base_headlines.html', headlines=headlines)
+    dates = headlines_database.get_dates_from_table(db, table)
+    headlines = {}
+
+    for date in dates:
+        headlines[date] = headlines_database.get_headlines_on_date(db, table, date)
+
+    if dates:
+        return render_template('base_headlines.html', dates=dates, headlines=headlines)
     else:
         return "No headlines in database"
 
