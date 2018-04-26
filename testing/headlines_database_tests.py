@@ -24,7 +24,7 @@ class TestHeadlinesDatabase(unittest.TestCase):
         headlines_database.create_headlines_table(self.db, self.table)
         headlines_database.add_headlines_to_table(headlines, self.db, self.table)
 
-        results = headlines_database.get_headlines_from_table(self.db, self.table)
+        results = headlines_database.get_all_headlines_from_table(self.db, self.table)
 
         headlines_database.drop_headlines_table(self.db, self.table)
 

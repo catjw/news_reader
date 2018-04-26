@@ -27,8 +27,8 @@ def add_headlines_to_table(headlines, db, table):
     connection.close()
 
 
-def get_headlines_from_table(db, table):
-    """Return headlines from table"""
+def get_all_headlines_from_table(db, table):
+    """Return all headlines from table"""
     connection = sqlite3.connect(db)
     c = connection.cursor()
 
@@ -40,6 +40,14 @@ def get_headlines_from_table(db, table):
     connection.close()
 
     return headline_list
+
+
+def get_dates_from_table(db, table):
+    """Return list of distinct date tuples from table"""
+
+
+def get_headlines_on_date(db, table, date):
+    """Returns list of headline tuples for a specific date tuple"""
 
 
 def drop_headlines_table(db, table):
