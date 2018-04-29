@@ -7,7 +7,7 @@ from crontab import CronTab
 project_dir = sys.argv[1]
 db = project_dir + sys.argv[2]
 table = sys.argv[3]
-cron_command = '%sbbcheadlines.py %s %s' % (project_dir, db, table)
+cron_command = '%sbbc_headlines.py %s %s' % (project_dir, db, table)
 
 create_headlines_table(db, table)
 
